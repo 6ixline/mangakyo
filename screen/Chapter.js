@@ -27,6 +27,11 @@ export default function Chapter({route}) {
                 <Image source={{uri : itemData.item}} style={styles.contentImage}/>
             );
         }} />
+
+        <View style={styles.bottomText}>
+          <Text>© Created by 6ixline</Text>
+        </View>
+     
           
       </View>
     );
@@ -55,7 +60,11 @@ export default function Chapter({route}) {
         width: win.width,
         height: 300 * ratio,
         marginBottom: 10
+    },
+    bottomText:{
+      position: "absolute",
+      bottom: 8,
+      left: "36%"
     }
-  
   });
   

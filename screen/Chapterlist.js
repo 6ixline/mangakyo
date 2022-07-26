@@ -9,6 +9,7 @@ const ratio = win.width / 200;
 export default function Chapterlist({route, navigation}) {
 
     const [chapterList, setChapterlist] = useState([{id: 1, url:'https://testing.com'}]);
+    const [currentChapter, setcurrentChapter] = useState(null);
 
     useEffect(()=>{
         async function getChapters(){
@@ -18,7 +19,8 @@ export default function Chapterlist({route, navigation}) {
         getChapters()
     }, [])
 
-    function handleNaviation(title, url){
+    function handleNaviation(title, url, index){
+        setcurrentChapter(index);
         navigation.navigate('Chapter', {
             title: title,
             url: url
@@ -29,17 +31,21 @@ export default function Chapterlist({route, navigation}) {
       <View style={styles.container}>
         <Text style={styles.upperTitle}>{route.params.title}</Text>
   
-        <FlatList data={chapterList} renderItem={(itemData)=> {
+        <FlatList data={chapterList} renderItem={({item, index})=> {
+          
             return (
-                <TouchableOpacity style={styles.chapterLink} onPress={()=> handleNaviation(itemData.item.id, itemData.item.url)}>
-                    <Text style={styles.innerText}>{itemData.item.id}</Text>
+                <TouchableOpacity style={[styles.chapterLink, { backgroundColor: currentChapter == index ? '#75E6DA' : "#fff" }]}  onPress={()=> handleNaviation(item.id, item.url, index)}>
+                    <Text style={styles.innerText}>{item.id}</Text>
                 </TouchableOpacity>
             );
         }}
         numColumns={4}
         keyExtractor={item=> item.id}
         />
-            
+        
+        <View style={styles.bottomText}>
+          <Text>© Created by 6ixline</Text>
+        </View>
      
       </View>
     );
@@ -80,10 +86,16 @@ export default function Chapterlist({route, navigation}) {
         marginRight: 10
     },
     innerText:{
-        color: "#05445E",
         fontWeight: "bold",
-        fontSize:20
+        fontSize:20,
+        color: "#05445E"
+    },
+    bottomText:{
+      position: "absolute",
+      bottom: 8,
+      left: "36%"
     }
-  
+
+   
   });
   
