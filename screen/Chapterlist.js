@@ -54,9 +54,9 @@ export default function Chapterlist({route, navigation}) {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      paddingTop: 50,
+      paddingTop: 5,
       paddingHorizontal: 16,
-      paddingBottom: 50
+      paddingBottom: 20
     },
     upperTitle:{
       fontSize: 22,

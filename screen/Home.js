@@ -31,7 +31,7 @@ export default function Home({navigation}) {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      paddingTop: 50,
+      paddingTop: 5,
       paddingHorizontal: 16
     },
     upperTitle:{
