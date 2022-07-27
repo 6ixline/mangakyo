@@ -20,10 +20,6 @@ export default function Home({navigation}) {
             <Image source={{uri: "https://i.pinimg.com/736x/16/65/ee/1665ee47b8a2c8954418fdf64689da41.jpg"}} style={styles.coverImage} />
           </TouchableOpacity>
         </View>
-
-        <View style={styles.bottomText}>
-          <Text>© Created by 6ixline</Text>
-        </View>
       </View>
     );
   }
@@ -31,7 +27,6 @@ export default function Home({navigation}) {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      paddingTop: 5,
       paddingHorizontal: 16
     },
     upperTitle:{
@@ -48,13 +43,6 @@ export default function Home({navigation}) {
       width: 180,
       marginTop: 15,
       borderRadius: 10
-    },
-    bottomText:{
-      position: "absolute",
-      bottom: 8,
-      left: "36%"
-    }
-
-  
+    }  
   });
   

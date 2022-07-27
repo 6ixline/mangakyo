@@ -42,11 +42,6 @@ export default function Chapterlist({route, navigation}) {
         numColumns={4}
         keyExtractor={item=> item.id}
         />
-        
-        <View style={styles.bottomText}>
-          <Text>© Created by 6ixline</Text>
-        </View>
-     
       </View>
     );
   }
@@ -54,7 +49,6 @@ export default function Chapterlist({route, navigation}) {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      paddingTop: 5,
       paddingHorizontal: 16,
       paddingBottom: 20
     },
@@ -89,13 +83,7 @@ export default function Chapterlist({route, navigation}) {
         fontWeight: "bold",
         fontSize:20,
         color: "#05445E"
-    },
-    bottomText:{
-      position: "absolute",
-      bottom: 8,
-      left: "36%"
     }
-
    
   });
   
