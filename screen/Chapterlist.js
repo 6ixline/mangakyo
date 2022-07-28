@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image, Dimensions, FlatList } from 'react-native';
 import { getChapterList } from "../utils/http"; 
+import storage from '../storage/storage';
 
 
 const win = Dimensions.get('window');
@@ -15,16 +16,34 @@ export default function Chapterlist({route, navigation}) {
         async function getChapters(){
            const chapters =  await getChapterList(route.params.url);
            setChapterlist(chapters);
+
+           storage.load({key: route.params.key})
+           .then(index => { 
+              setcurrentChapter(index)
+            
+          })
+           .catch(err => { console.log("No Data Found!")})
         }
+
+       
         getChapters()
+
     }, [])
 
-    function handleNaviation(title, url, index){
+    function handleChapterState(index){
+      if(index != ""){
         setcurrentChapter(index);
+      }
+    }
+
+    function handleNaviation(title, url, index){
         navigation.navigate('Chapter', {
             title: title,
             url: route.params.cdUrl,
-            chapterUrl: url
+            chapterUrl: url,
+            chapterIndex:index,
+            key: route.params.key,
+            handleChapter: handleChapterState
         })
     }
    

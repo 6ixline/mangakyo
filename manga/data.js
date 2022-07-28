@@ -1,6 +1,7 @@
 const manga = [
     {
         key: 1,
+        storage: "jujustu",
         title: 'Jujustu Kaisen Chapters',
         url1: "https://jujustu.herokuapp.com/jujutsu/chapters",
         url2: "https://jujustu.herokuapp.com/jujutsu/chapterdetails",
@@ -8,6 +9,7 @@ const manga = [
     },
     {
         key: 2,
+        storage: "demon",
         title: 'Demon Slayer Chapters',
         url1: "https://jujustu.herokuapp.com/demon/chapters",
         url2: "https://jujustu.herokuapp.com/demon/chapterdetails",

@@ -18,7 +18,6 @@ export async function getChapterList(url){
 }
 
 export async function getChapter(url,chapterUrl){
-    console.log(url,chapterUrl);
     const data = JSON.stringify({'chapterlink': chapterUrl})
    try
     {

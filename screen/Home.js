@@ -5,11 +5,12 @@ import manga from '../manga/data';
 export default function Home({navigation}) {
     const [enterGoalText, setEnterGoalText] = useState('');
    
-    function handleImagePress(url, chapterdetailsurl, title){
+    function handleImagePress(url, chapterdetailsurl, title, key){
         navigation.navigate('Chapterlist', {
             title: title,
             url: url,
-            cdUrl: chapterdetailsurl
+            cdUrl: chapterdetailsurl,
+            key: key
         });
     }
     return (
@@ -20,7 +21,7 @@ export default function Home({navigation}) {
           renderItem = {({item})=>{
             return (
               <View styles={styles.bookFolder}>
-              <TouchableOpacity onPress={()=> handleImagePress(item.url1, item.url2, item.title)}>
+              <TouchableOpacity onPress={()=> handleImagePress(item.url1, item.url2, item.title, item.storage)}>
                 <Image source={{uri: item.img}} style={styles.coverImage} />
               </TouchableOpacity>
             </View>
