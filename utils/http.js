@@ -1,7 +1,7 @@
 import axios from "axios";
 
-export async function getChapterList(){
-    const response = await axios.get('https://jujustu.herokuapp.com/chapters');
+export async function getChapterList(url){
+    const response = await axios.get(url);
     let res = [];
     if(response != ''){
         let j = response.data.length;
@@ -11,17 +11,18 @@ export async function getChapterList(){
             j--;
         }
     }else{
-        return [{id: 1, url:'https://testing.com'}];
+        return [];
     }
    
     return res;
 }
 
-export async function getChapter(url){
-    const data = JSON.stringify({'chapterlink': url})
+export async function getChapter(url,chapterUrl){
+    console.log(url,chapterUrl);
+    const data = JSON.stringify({'chapterlink': chapterUrl})
    try
     {
-        const response = await axios.post("https://jujustu.herokuapp.com/chapterdetails", data, {
+        const response = await axios.post(url, data, {
             headers: {
             'Content-Type': 'application/json'
             }

@@ -1,25 +1,34 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image } from 'react-native';
-
-
+import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image, FlatList } from 'react-native';
+import manga from '../manga/data';
 
 export default function Home({navigation}) {
     const [enterGoalText, setEnterGoalText] = useState('');
    
-    function handleImagePress(){
+    function handleImagePress(url, chapterdetailsurl, title){
         navigation.navigate('Chapterlist', {
-            title: 'Jujustu Kaisen Chapters'
+            title: title,
+            url: url,
+            cdUrl: chapterdetailsurl
         });
     }
     return (
       <View style={styles.container}>
         <Text style={styles.upperTitle}>Mangakyo</Text>
-  
-        <View styles={styles.bookFolder}>
-          <TouchableOpacity onPress={handleImagePress}>
-            <Image source={{uri: "https://i.pinimg.com/736x/16/65/ee/1665ee47b8a2c8954418fdf64689da41.jpg"}} style={styles.coverImage} />
-          </TouchableOpacity>
-        </View>
+        <FlatList 
+          data={manga}
+          renderItem = {({item})=>{
+            return (
+              <View styles={styles.bookFolder}>
+              <TouchableOpacity onPress={()=> handleImagePress(item.url1, item.url2, item.title)}>
+                <Image source={{uri: item.img}} style={styles.coverImage} />
+              </TouchableOpacity>
+            </View>
+            )
+          }}
+          keyExtractor={(item)=>(item.key)}
+          numColumns="2"
+        />
       </View>
     );
   }
@@ -38,11 +47,15 @@ export default function Home({navigation}) {
       borderBottomColor: "#cccccc",
       paddingBottom: 20,
     },
+    bookFolder:{
+      justifyContent: 'space-between'
+    },
     coverImage:{
       height: 250,
       width: 180,
       marginTop: 15,
-      borderRadius: 10
+      borderRadius: 10,
+      marginRight: 20
     }  
   });
   

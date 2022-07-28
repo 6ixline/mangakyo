@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image,Dimensions, FlatList  } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image, Dimensions, FlatList } from 'react-native';
 import { getChapterList } from "../utils/http"; 
 
 
@@ -8,12 +8,12 @@ const ratio = win.width / 200;
 
 export default function Chapterlist({route, navigation}) {
 
-    const [chapterList, setChapterlist] = useState([{id: 1, url:'https://testing.com'}]);
+    const [chapterList, setChapterlist] = useState([]);
     const [currentChapter, setcurrentChapter] = useState(null);
 
     useEffect(()=>{
         async function getChapters(){
-           const chapters =  await getChapterList();
+           const chapters =  await getChapterList(route.params.url);
            setChapterlist(chapters);
         }
         getChapters()
@@ -23,7 +23,8 @@ export default function Chapterlist({route, navigation}) {
         setcurrentChapter(index);
         navigation.navigate('Chapter', {
             title: title,
-            url: url
+            url: route.params.cdUrl,
+            chapterUrl: url
         })
     }
    

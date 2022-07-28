@@ -11,7 +11,7 @@ export default function Chapter({route}) {
 
     useEffect(()=>{
       async function getImages(){
-        const images = await getChapter(route.params.url);
+        const images = await getChapter(route.params.url, route.params.chapterUrl);
         setimageurl(images)
       }
       getImages();
