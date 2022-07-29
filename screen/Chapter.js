@@ -11,7 +11,7 @@ export default function Chapter({route}) {
    
     const [imageurl, setimageurl] = useState([]);
     const [bookMark, setBookMark] = useState('');
-    const [flag, setflag] = useState(false);
+    const [flag, setflag] = useState(true);
 
     useEffect(()=>{
       async function getImages(){
@@ -22,10 +22,8 @@ export default function Chapter({route}) {
         .then(index => { 
           if(index == route.params.chapterIndex){
             setBookMark(index);
-            setflag(true)
+            setflag(false)
           }
-
-          console.log("data",index);
         })
         .catch(err => { console.log("No Data Found!")})
       }
@@ -40,23 +38,19 @@ export default function Chapter({route}) {
           setBookMark(route.params.chapterIndex);
           setflag(true);
         }
-        console.log("book mark",bookMark)
-
         storage.save({key: route.params.key, data: `${bookMark}`});
         route.params.handleChapter(bookMark)
-        storage.load({key: route.params.key})
-        .then(index => { index == console.log("DATA",index) })
-        .catch(err => { console.log("No Data Found!")})
+      
     }
 
     return (
       <View style={styles.container}>
-        <View style={styles.upperTitle}>
-          <Text>
+        <View style={styles.titleContainer}>
+          <Text style={styles.upperTitle}>
             Chapter No :{route.params.title}
           </Text>
           <TouchableOpacity onPress={handleBookMarkPress}>
-            <Ionicons name={flag ? "md-bookmark" : "md-bookmark-outline"} size={32} color="red" />
+            <Ionicons name={flag ? "md-bookmark-outline" : "md-bookmark"} size={32} color="red" />
           </TouchableOpacity>
         </View>
   
@@ -74,10 +68,13 @@ export default function Chapter({route}) {
       flex: 1,
       paddingHorizontal: 16
     },
-    upperTitle:{
+    titleContainer:{
       flexDirection: 'row',
       justifyContent: "space-between",
       alignItems: "center",
+    },
+    upperTitle:{
+   
       fontSize: 22,
       fontWeight: "bold",
       marginTop: 16,
