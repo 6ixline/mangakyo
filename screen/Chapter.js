@@ -72,17 +72,16 @@ export default function Chapter({route}) {
       flexDirection: 'row',
       justifyContent: "space-between",
       alignItems: "center",
-    },
-    upperTitle:{
-   
-      fontSize: 22,
-      fontWeight: "bold",
-      marginTop: 16,
-      paddingLeft: 15,
       borderBottomWidth: 1,
       borderBottomColor: "#cccccc",
       paddingBottom: 20,
       marginBottom: 20
+    },
+    upperTitle:{
+      fontSize: 22,
+      fontWeight: "bold",
+      marginTop: 16,
+      paddingLeft: 15,
     },
     chapterList:{
         flex: 1,
