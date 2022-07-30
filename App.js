@@ -40,6 +40,7 @@ styles = StyleSheet.create({
     position: "absolute",
     bottom: 8,
     alignSelf: 'center',
+    justifyContent: "center",
     backgroundColor: "#f2f2f2"
   }
 })

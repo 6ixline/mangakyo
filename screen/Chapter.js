@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image, Dimensions, FlatList } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator, TouchableOpacity, Image, Dimensions, FlatList } from 'react-native';
 import { getChapter } from "../utils/http";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import storage from '../storage/storage';
@@ -57,7 +57,9 @@ export default function Chapter({route}) {
           </TouchableOpacity>
         </View>
         {
-          activityStatus ? <Loader /> : <FlatList styles={styles.chapterList} data={imageurl} renderItem={(itemData) =>{
+          activityStatus ? <View style={styles.containerLoader}>
+          <ActivityIndicator size="large" color="#89CFF0"  />
+      </View> : <FlatList styles={styles.chapterList} data={imageurl} renderItem={(itemData) =>{
             return (
                 <Image source={{uri : itemData.item}} style={styles.contentImage}/>
             );
@@ -95,7 +97,13 @@ export default function Chapter({route}) {
         width: win.width,
         height: 300 * ratio,
         marginBottom: 10
-    }
+    },
+    containerLoader:{
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: "center",
+    },
+  
    
   });
   

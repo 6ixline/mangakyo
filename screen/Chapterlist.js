@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image, Dimensions, FlatList, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions, FlatList, ActivityIndicator } from 'react-native';
 import { getChapterList } from "../utils/http"; 
 import storage from '../storage/storage';
 import Loader from '../loader/loader';
@@ -53,7 +53,9 @@ export default function Chapterlist({route, navigation}) {
       <View style={styles.container}>
         <Text style={styles.upperTitle}>{route.params.title}</Text>
       
-        { activityStatus ? <Loader /> :
+        { activityStatus ? <View style={styles.containerLoader}>
+            <ActivityIndicator size="large" color="#89CFF0"/>
+        </View>  :
         <FlatList data={chapterList} renderItem={({item, index})=> {
           
             return (
@@ -106,7 +108,12 @@ export default function Chapterlist({route, navigation}) {
         fontWeight: "bold",
         fontSize:20,
         color: "#05445E"
-    }
+    },
+    containerLoader:{
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: "center",
+  }
    
   });
   
