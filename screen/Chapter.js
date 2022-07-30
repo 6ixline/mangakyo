@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image, Dim
 import { getChapter } from "../utils/http";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import storage from '../storage/storage';
+import Loader from '../loader/loader';
 
 const win = Dimensions.get('window');
 const ratio = win.width / 200;
@@ -12,11 +13,13 @@ export default function Chapter({route}) {
     const [imageurl, setimageurl] = useState([]);
     const [bookMark, setBookMark] = useState('');
     const [flag, setflag] = useState(true);
+    const [activityStatus, setactivityStatus] = useState(true);
 
     useEffect(()=>{
       async function getImages(){
         const images = await getChapter(route.params.url, route.params.chapterUrl);
         setimageurl(images)
+        setactivityStatus(false)
         
         storage.load({key: route.params.key})
         .then(index => { 
@@ -53,12 +56,14 @@ export default function Chapter({route}) {
             <Ionicons name={flag ? "md-bookmark-outline" : "md-bookmark"} size={32} color="red" />
           </TouchableOpacity>
         </View>
-  
-        <FlatList styles={styles.chapterList} data={imageurl} renderItem={(itemData) =>{
+        {
+          activityStatus ? <Loader /> : <FlatList styles={styles.chapterList} data={imageurl} renderItem={(itemData) =>{
             return (
                 <Image source={{uri : itemData.item}} style={styles.contentImage}/>
             );
         }} />
+        }
+        
       </View>
     );
   }

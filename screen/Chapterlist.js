@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image, Dimensions, FlatList } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image, Dimensions, FlatList, ActivityIndicator } from 'react-native';
 import { getChapterList } from "../utils/http"; 
 import storage from '../storage/storage';
-
+import Loader from '../loader/loader';
 
 const win = Dimensions.get('window');
 const ratio = win.width / 200;
@@ -11,11 +11,13 @@ export default function Chapterlist({route, navigation}) {
 
     const [chapterList, setChapterlist] = useState([]);
     const [currentChapter, setcurrentChapter] = useState(null);
+    const [activityStatus, setactivityStatus] = useState(true);
 
     useEffect(()=>{
         async function getChapters(){
            const chapters =  await getChapterList(route.params.url);
            setChapterlist(chapters);
+           setactivityStatus(false);
 
            storage.load({key: route.params.key})
            .then(index => { 
@@ -50,7 +52,8 @@ export default function Chapterlist({route, navigation}) {
     return (
       <View style={styles.container}>
         <Text style={styles.upperTitle}>{route.params.title}</Text>
-  
+      
+        { activityStatus ? <Loader /> :
         <FlatList data={chapterList} renderItem={({item, index})=> {
           
             return (
@@ -61,7 +64,7 @@ export default function Chapterlist({route, navigation}) {
         }}
         numColumns={4}
         keyExtractor={item=> item.id}
-        />
+        /> }
       </View>
     );
   }
