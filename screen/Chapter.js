@@ -103,7 +103,5 @@ export default function Chapter({route}) {
       justifyContent: 'center',
       alignItems: "center",
     },
-  
-   
   });
   
