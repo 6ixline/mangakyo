@@ -22,7 +22,6 @@ export default function Chapterlist({route, navigation}) {
            storage.load({key: route.params.key})
            .then(index => { 
               setcurrentChapter(index)
-            
           })
            .catch(err => { console.log("No Data Found!")})
         }
@@ -78,11 +77,11 @@ export default function Chapterlist({route, navigation}) {
       paddingBottom: 25
     },
     upperTitle:{
-      fontSize: 22,
+      fontSize: 18,
       fontWeight: "bold",
       marginTop: 16,
       color: "#05445E",
-      paddingLeft: 15,
+      paddingLeft: 5,
       borderBottomWidth: 1,
       borderBottomColor: "#cccccc",
       paddingBottom: 15,

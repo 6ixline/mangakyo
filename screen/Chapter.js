@@ -73,7 +73,7 @@ export default function Chapter({route}) {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      paddingHorizontal: 16
+      paddingHorizontal: 10
     },
     titleContainer:{
       flexDirection: 'row',
@@ -86,7 +86,7 @@ export default function Chapter({route}) {
       marginTop: 16
     },
     upperTitle:{
-      fontSize: 22,
+      fontSize: 18,
       fontWeight: "bold",
       color: "#05445E"
     },
