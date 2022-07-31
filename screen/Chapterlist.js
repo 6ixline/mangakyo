@@ -75,7 +75,7 @@ export default function Chapterlist({route, navigation}) {
     container: {
       flex: 1,
       paddingHorizontal: 16,
-      paddingBottom: 20
+      paddingBottom: 25
     },
     upperTitle:{
       fontSize: 22,
@@ -84,13 +84,14 @@ export default function Chapterlist({route, navigation}) {
       paddingLeft: 15,
       borderBottomWidth: 1,
       borderBottomColor: "#cccccc",
-      paddingBottom: 20,
+      paddingBottom: 15,
     },
     chapterList:{
         flex: 1,
         flexDirection: 'row',
         flexWrap: "wrap",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        paddingBottom:  10
 
     },
     chapterLink:{

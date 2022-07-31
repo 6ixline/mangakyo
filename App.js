@@ -41,6 +41,6 @@ styles = StyleSheet.create({
     bottom: 8,
     alignSelf: 'center',
     justifyContent: "center",
-    backgroundColor: "#f2f2f2"
+    backgroundColor: 'transparent'
   }
 })

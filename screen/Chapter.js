@@ -81,14 +81,13 @@ export default function Chapter({route}) {
       alignItems: "center",
       borderBottomWidth: 1,
       borderBottomColor: "#cccccc",
-      paddingBottom: 20,
-      marginBottom: 20
+      paddingBottom: 10,
+      marginBottom: 10,
+      marginTop: 16
     },
     upperTitle:{
       fontSize: 22,
       fontWeight: "bold",
-      marginTop: 16,
-      paddingLeft: 15,
     },
     chapterList:{
         flex: 1,
