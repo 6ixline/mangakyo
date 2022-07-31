@@ -83,7 +83,7 @@ export default function Chapterlist({route, navigation}) {
       marginTop: 16,
       paddingLeft: 15,
       borderBottomWidth: 1,
-      borderBottomColor: "#cccccc",
+      borderBottomColor: "#05445E",
       paddingBottom: 15,
     },
     chapterList:{

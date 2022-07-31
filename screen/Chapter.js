@@ -88,6 +88,7 @@ export default function Chapter({route}) {
     upperTitle:{
       fontSize: 22,
       fontWeight: "bold",
+      color: "#05445E"
     },
     chapterList:{
         flex: 1,
