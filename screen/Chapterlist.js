@@ -25,10 +25,7 @@ export default function Chapterlist({route, navigation}) {
           })
            .catch(err => { console.log("No Data Found!")})
         }
-
-       
         getChapters()
-
     }, [])
 
     function handleChapterState(index){
@@ -108,7 +105,7 @@ export default function Chapterlist({route, navigation}) {
     innerText:{
         fontWeight: "bold",
         fontSize:20,
-        color: "#05445E"
+        color: "#05445E",
     },
     containerLoader:{
       flex: 1,
