@@ -3,17 +3,16 @@ const data = [
         "title" : "Currently Reading",
         "manga" : [
             {
-                key: 1,
-                storage: "jujustu",
-                title: 'Jujustu Kaisen Chapters',
-                comicTitle: "Jujutsu Kaisen",
-                url1: "https://jujustu.herokuapp.com/jujutsu/chapters",
-                url2: "https://jujustu.herokuapp.com/jujutsu/chapterdetails",
-                img: "https://i.pinimg.com/736x/16/65/ee/1665ee47b8a2c8954418fdf64689da41.jpg"
-            },
-            
-            {
                 key: 3,
+                storage: "aoi",
+                title: 'Aoashi Chapters',
+                comicTitle: "Aoashi",
+                url1: "https://jujustu.herokuapp.com/aoi/chapters",
+                url2: "https://jujustu.herokuapp.com/aoi/chapterdetails",
+                img: "https://comicvine.gamespot.com/a/uploads/scale_medium/6/67663/6637650-14.jpg"
+            },            
+            {
+                key: 4,
                 storage: "hero",
                 title: 'Hero Academia Chapters',
                 comicTitle: "Hero Academia",
@@ -22,7 +21,7 @@ const data = [
                 img: "https://img.elo7.com.br/product/zoom/1E7C1E4/big-poster-anime-my-hero-academia-tamanho-90x-0-cm-lo004-quadro.jpg"
             },
             {
-                key: 4,
+                key: 5,
                 storage: "one",
                 title: 'One Punch Man Chapters',
                 comicTitle: "One Punch Man",
@@ -36,6 +35,15 @@ const data = [
         "title" : "Completed Reading",
         "manga" : [
             {
+                key: 1,
+                storage: "jujustu",
+                title: 'Jujustu Kaisen Chapters',
+                comicTitle: "Jujutsu Kaisen",
+                url1: "https://jujustu.herokuapp.com/jujutsu/chapters",
+                url2: "https://jujustu.herokuapp.com/jujutsu/chapterdetails",
+                img: "https://i.pinimg.com/736x/16/65/ee/1665ee47b8a2c8954418fdf64689da41.jpg"
+            },
+            {
                 key: 2,
                 storage: "demon",
                 title: 'Demon Slayer Chapters',
@@ -44,6 +52,7 @@ const data = [
                 url2: "https://jujustu.herokuapp.com/demon/chapterdetails",
                 img: "https://i.pinimg.com/originals/1c/c3/ab/1cc3ab67524b864d061f5d1e631adcbf.jpg"
             },
+            
         ]
     }
     
