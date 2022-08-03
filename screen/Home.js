@@ -56,10 +56,10 @@ const styles = StyleSheet.create({
   },
   upperTitle: {
     fontSize: 22,
-    fontWeight: "bold",
     marginTop: 16,
     paddingLeft: 15,
     color: "#05445E",
+    fontFamily: "hel-v1",
     borderBottomWidth: 1,
     borderBottomColor: "#cccccc",
     paddingBottom: 20,
@@ -81,16 +81,16 @@ const styles = StyleSheet.create({
   },
   featureTitle: {
     color: '#189AB4',
-    fontWeight: "bold",
+    fontFamily: "hel-v2",
     fontSize: 16,
     marginLeft: 5
   },
   mangaTitle: {
     color: "#05445E",
-    fontSize: 14,
+    fontSize: 16,
     alignSelf: "center",
-    padding: 4,
-    fontWeight: 'bold'
+    paddingVertical: 6,
+    fontFamily: 'hel-v2'
   },
   categoryContainer: {
     marginBottom: 30,

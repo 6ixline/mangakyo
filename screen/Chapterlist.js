@@ -75,7 +75,7 @@ export default function Chapterlist({route, navigation}) {
     },
     upperTitle:{
       fontSize: 18,
-      fontWeight: "bold",
+      fontFamily: "hel-v2",
       marginTop: 16,
       color: "#05445E",
       paddingLeft: 5,
@@ -103,7 +103,7 @@ export default function Chapterlist({route, navigation}) {
         marginRight: 10
     },
     innerText:{
-        fontWeight: "bold",
+        fontFamily: "hel-v2",
         fontSize:20,
         color: "#05445E",
     },
