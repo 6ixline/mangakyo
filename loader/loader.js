@@ -8,7 +8,7 @@ export default function Loader(){
     );
 }
 
-styles = StyleSheet.create({
+const styles = StyleSheet.create({
     containerLoader:{
         flex: 1,
         padding: 50,

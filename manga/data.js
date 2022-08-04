@@ -3,6 +3,15 @@ const data = [
         "title" : "Currently Reading",
         "manga" : [
             {
+                key: 5,
+                storage: "one",
+                title: 'One Punch Man Chapters',
+                comicTitle: "One Punch Man",
+                url1: "https://jujustu.herokuapp.com/one/chapters",
+                url2: "https://jujustu.herokuapp.com/one/chapterdetails",
+                img: "https://image.tmdb.org/t/p/original/9uAvT6PfbyCAixlLwZBLPUAIjkd.jpg"
+            },
+            {
                 key: 3,
                 storage: "aoi",
                 title: 'Aoashi Chapters',
@@ -20,15 +29,7 @@ const data = [
                 url2: "https://jujustu.herokuapp.com/hero/chapterdetails",
                 img: "https://img.elo7.com.br/product/zoom/1E7C1E4/big-poster-anime-my-hero-academia-tamanho-90x-0-cm-lo004-quadro.jpg"
             },
-            {
-                key: 5,
-                storage: "one",
-                title: 'One Punch Man Chapters',
-                comicTitle: "One Punch Man",
-                url1: "https://jujustu.herokuapp.com/one/chapters",
-                url2: "https://jujustu.herokuapp.com/one/chapterdetails",
-                img: "https://image.tmdb.org/t/p/original/9uAvT6PfbyCAixlLwZBLPUAIjkd.jpg"
-            }
+            
         ]
     },
     {

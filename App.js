@@ -48,7 +48,7 @@ export default function App() {
 }
 
 
-styles = StyleSheet.create({
+const styles = StyleSheet.create({
   bottomText:{
     position: "absolute",
     bottom: 8,
