@@ -33,7 +33,7 @@ const data = [
         ]
     },
     {
-        "title" : "Completed Reading",
+        "title" : "Finished Reading",
         "manga" : [
             {
                 key: 1,
