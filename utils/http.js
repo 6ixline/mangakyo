@@ -31,3 +31,12 @@ export async function getChapter(url,chapterUrl){
         return ['https://i.pinimg.com/736x/16/65/ee/1665ee47b8a2c8954418fdf64689da41.jpg']
     }
 }
+export async function getMangaData(){
+   try
+    {
+        const response = await axios.get("https://jujustu.herokuapp.com/mangadata");
+        return response.data;
+    }catch(e){
+        return [{"title": "No Data Found", "manga": []}]
+    }
+}

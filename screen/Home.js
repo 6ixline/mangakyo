@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image, FlatList } from 'react-native';
+import { getMangaData } from "../utils/http";
 import Ionicons from '@expo/vector-icons/Ionicons';
-import data from '../manga/data';
 
 export default function Home({ navigation }) {
   const [enterGoalText, setEnterGoalText] = useState('');
+  const [dataManga, setMangaData] = useState([]);
 
   function handleImagePress(url, chapterdetailsurl, title, key) {
     navigation.navigate('Chapterlist', {
@@ -14,11 +15,18 @@ export default function Home({ navigation }) {
       key: key
     });
   }
+  useEffect(()=>{
+    async function getManga(){
+      const data = await getMangaData();
+      setMangaData(data)
+    }
+    getManga();
+  }, [])
   return (
     <View style={styles.container}>
       <Text style={styles.upperTitle}>Mangakyo</Text>
 
-      <FlatList style={styles.categoryContainer} data={data} renderItem={({ item }) => {
+      <FlatList style={styles.categoryContainer} data={dataManga} renderItem={({ item }) => {
        return ( <>
           <View style={styles.featureContainer}>
             <Ionicons name="albums" size={20} color="#189AB4" />
@@ -29,14 +37,14 @@ export default function Home({ navigation }) {
             renderItem={({ item }) => {
               return (
                 <View styles={styles.bookFolder}>
-                  <TouchableOpacity onPress={() => handleImagePress(item.url1, item.url2, item.title, item.storage)}>
-                    <Image source={{ uri: item.img }} style={styles.coverImage} />
+                  <TouchableOpacity onPress={() => handleImagePress(item.url1, item.url2, item.chapterTitle , item.storageKey)}>
+                    <Image source={{ uri: item.coverImage }} style={styles.coverImage} />
                     <Text style={styles.mangaTitle}>{item.comicTitle}</Text>
                   </TouchableOpacity>
                 </View>
               )
             }}
-            keyExtractor={(item) => (item.key)}
+            keyExtractor={(item) => (item._id)}
             // numColumns="2",
             horizontal
 
