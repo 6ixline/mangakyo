@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image, FlatList } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image, FlatList, ActivityIndicator } from 'react-native';
 import { getMangaData } from "../utils/http";
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function Home({ navigation }) {
   const [enterGoalText, setEnterGoalText] = useState('');
   const [dataManga, setMangaData] = useState([]);
+  const [activityStatus, setactivityStatus] = useState(true);
 
   function handleImagePress(url, chapterdetailsurl, title, key) {
     navigation.navigate('Chapterlist', {
@@ -19,14 +20,19 @@ export default function Home({ navigation }) {
     async function getManga(){
       const data = await getMangaData();
       setMangaData(data)
+    setactivityStatus(false)
+
     }
     getManga();
   }, [])
   return (
     <View style={styles.container}>
       <Text style={styles.upperTitle}>Mangakyo</Text>
+      {console.log(activityStatus)}
 
-      <FlatList style={styles.categoryContainer} data={dataManga} renderItem={({ item }) => {
+     {activityStatus ? <View style={styles.containerLoader}>
+            <ActivityIndicator size="large" color="#89CFF0"/>
+        </View> : <FlatList style={styles.categoryContainer} data={dataManga} renderItem={({ item }) => {
        return ( <>
           <View style={styles.featureContainer}>
             <Ionicons name="albums" size={20} color="#189AB4" />
@@ -50,7 +56,7 @@ export default function Home({ navigation }) {
 
           />
         </>)
-      }} />
+      }} />}
 
 
     </View>
@@ -102,5 +108,11 @@ const styles = StyleSheet.create({
   },
   categoryContainer: {
     marginBottom: 30,
-  }
+  },
+  containerLoader:{
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: "center",
+}
+ 
 });
