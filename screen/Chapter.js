@@ -16,21 +16,29 @@ export default function Chapter({route}) {
     const [activityStatus, setactivityStatus] = useState(true);
 
     useEffect(()=>{
+      let isCancelled = false; 
       async function getImages(){
         const images = await getChapter(route.params.url, route.params.chapterUrl);
-        setimageurl(images)
-        setactivityStatus(false)
-        
+        if(!isCancelled){
+          setimageurl(images)
+          setactivityStatus(false)
+        }
         storage.load({key: route.params.key})
         .then(index => { 
           if(index == route.params.chapterIndex){
+            if(!isCancelled){
             setBookMark(index);
             setflag(false)
+            }
           }
         })
         .catch(err => { console.log("No Data Found!")})
       }
       getImages();
+
+      return ()=>{
+        isCancelled = true;
+      }
     },[])
 
     function handleBookMarkPress(){

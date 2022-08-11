@@ -17,22 +17,26 @@ export default function Home({ navigation }) {
     });
   }
   useEffect(()=>{
+    let isCancelled = false;
     async function getManga(){
       const data = await getMangaData();
-      setMangaData(data)
-    setactivityStatus(false)
-
+      if(!isCancelled){
+        setMangaData(data)
+        setactivityStatus(false)
+      }
     }
     getManga();
+    return ()=>{
+      isCancelled = true;
+    }
   }, [])
   return (
     <View style={styles.container}>
       <Text style={styles.upperTitle}>Mangakyo</Text>
-      {console.log(activityStatus)}
 
      {activityStatus ? <View style={styles.containerLoader}>
             <ActivityIndicator size="large" color="#89CFF0"/>
-        </View> : <FlatList style={styles.categoryContainer} data={dataManga} renderItem={({ item }) => {
+        </View> : <FlatList style={styles.categoryContainer}  showsVerticalScrollIndicator={false} data={dataManga} renderItem={({ item }) => {
        return ( <>
           <View style={styles.featureContainer}>
             <Ionicons name="albums" size={20} color="#189AB4" />
@@ -79,14 +83,20 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   bookFolder: {
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    shadowColor: 'green',
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 1,
+    shadowRadius: 2,
+    elevation: 20,
   },
   coverImage: {
     height: 240,
     width: 170,
     marginTop: 15,
     borderRadius: 10,
-    marginRight: 10
+    marginRight: 10,
+    
   },
   featureContainer: {
     paddingTop: 10,

@@ -14,18 +14,27 @@ export default function Chapterlist({route, navigation}) {
     const [activityStatus, setactivityStatus] = useState(true);
 
     useEffect(()=>{
+        let isCancelled = false;
         async function getChapters(){
-           const chapters =  await getChapterList(route.params.url);
-           setChapterlist(chapters);
-           setactivityStatus(false);
+            const chapters =  await getChapterList(route.params.url);
+            if(!isCancelled){
+              setChapterlist(chapters);
+              setactivityStatus(false);
+            }
 
-           storage.load({key: route.params.key})
-           .then(index => { 
-              setcurrentChapter(index)
-          })
-           .catch(err => { console.log("No Data Found!")})
+            storage.load({key: route.params.key})
+            .then(index => { 
+              if(!isCancelled){
+                setcurrentChapter(index)
+              }
+            })
+            .catch(err => { console.log("No Data Found!")})
         }
         getChapters()
+
+        return () =>{
+          isCancelled = true;
+        }
     }, [])
 
     function handleChapterState(index){
