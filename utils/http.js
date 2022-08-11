@@ -1,27 +1,36 @@
 import axios from "axios";
 
-export async function getChapterList(url){
-    const response = await axios.get(url);
-    let res = [];
-    if(response != ''){
-        let j = response.data.length;
-        for(let i = 0; i < response.data.length; i++){
-
-            res.push({id: j, url:response.data[i]})
-            j--;
+export async function getChapterList(data){
+    try{ 
+        data = JSON.stringify(data);
+        const response = await axios.post("https://jujustu.herokuapp.com/manga/chapterlists", data, {
+            headers: {
+            'Content-Type': 'application/json'
+            }
+        });
+        let res = [];
+        if(response != ''){
+            let j = response.data.length;
+            for(let i = 0; i < response.data.length; i++){
+    
+                res.push({id: j, url:response.data[i]})
+                j--;
+            }
+        }else{
+            return [];
         }
-    }else{
+        return res;
+    }catch(e){
         return [];
     }
    
-    return res;
 }
 
-export async function getChapter(url,chapterUrl){
-    const data = JSON.stringify({'chapterlink': chapterUrl})
-   try
+export async function getChapter(data){
+    data = JSON.stringify(data)
+    try
     {
-        const response = await axios.post(url, data, {
+        const response = await axios.post('https://jujustu.herokuapp.com/manga/chapterdata', data, {
             headers: {
             'Content-Type': 'application/json'
             }

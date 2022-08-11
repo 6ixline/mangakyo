@@ -12,18 +12,25 @@ export default function Chapter({route}) {
    
     const [imageurl, setimageurl] = useState([]);
     const [bookMark, setBookMark] = useState('');
+    const [chapterData, setChapterData] = useState(route.params.chapterData)
     const [flag, setflag] = useState(true);
     const [activityStatus, setactivityStatus] = useState(true);
 
     useEffect(()=>{
       let isCancelled = false; 
+      const data = {
+        "chapterlink": route.params.chapterUrl,
+        "chapterImageEnd": chapterData.chapterImageEnd,
+        "imageDirect": chapterData.imageDirect,
+        "scroll": chapterData.scroll,
+      }
       async function getImages(){
-        const images = await getChapter(route.params.url, route.params.chapterUrl);
+        const images = await getChapter(data);
         if(!isCancelled){
           setimageurl(images)
           setactivityStatus(false)
         }
-        storage.load({key: route.params.key})
+        storage.load({key: chapterData.storageKey})
         .then(index => { 
           if(index == route.params.chapterIndex){
             if(!isCancelled){
@@ -49,7 +56,7 @@ export default function Chapter({route}) {
           setBookMark(route.params.chapterIndex);
           setflag(true);
         }
-        storage.save({key: route.params.key, data: `${bookMark}`});
+        storage.save({key: chapterData.storageKey, data: `${bookMark}`});
         route.params.handleChapter(bookMark)
       
     }

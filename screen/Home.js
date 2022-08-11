@@ -8,12 +8,9 @@ export default function Home({ navigation }) {
   const [dataManga, setMangaData] = useState([]);
   const [activityStatus, setactivityStatus] = useState(true);
 
-  function handleImagePress(url, chapterdetailsurl, title, key) {
+  function handleImagePress(item) {
     navigation.navigate('Chapterlist', {
-      title: title,
-      url: url,
-      cdUrl: chapterdetailsurl,
-      key: key
+     item
     });
   }
   useEffect(()=>{
@@ -32,6 +29,7 @@ export default function Home({ navigation }) {
   }, [])
   return (
     <View style={styles.container}>
+      
       <Text style={styles.upperTitle}>Mangakyo</Text>
 
      {activityStatus ? <View style={styles.containerLoader}>
@@ -47,7 +45,7 @@ export default function Home({ navigation }) {
             renderItem={({ item }) => {
               return (
                 <View styles={styles.bookFolder}>
-                  <TouchableOpacity onPress={() => handleImagePress(item.url1, item.url2, item.chapterTitle , item.storageKey)}>
+                  <TouchableOpacity onPress={() => handleImagePress(item)}>
                     <Image source={{ uri: item.coverImage }} style={styles.coverImage} />
                     <Text style={styles.mangaTitle}>{item.comicTitle}</Text>
                   </TouchableOpacity>

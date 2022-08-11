@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions, FlatList, ActivityIndicator } from 'react-native';
 import { getChapterList } from "../utils/http"; 
 import storage from '../storage/storage';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import Loader from '../loader/loader';
 
 const win = Dimensions.get('window');
@@ -10,19 +11,30 @@ const ratio = win.width / 200;
 export default function Chapterlist({route, navigation}) {
 
     const [chapterList, setChapterlist] = useState([]);
+    const [chapterData, setChapterData] = useState(route.params.item)
+    const [chapterDataStatus, setChapterDataStatus] = useState(false);
     const [currentChapter, setcurrentChapter] = useState(null);
     const [activityStatus, setactivityStatus] = useState(true);
 
     useEffect(()=>{
+        const data = {
+          "mangaUrl": chapterData.mangaUrl,
+          "chapterRoute": chapterData.chapterRoute,
+          "chapterRouteEnd": chapterData.chapterRouteEnd
+        }
         let isCancelled = false;
         async function getChapters(){
-            const chapters =  await getChapterList(route.params.url);
+            const chapters =  await getChapterList(data);
             if(!isCancelled){
               setChapterlist(chapters);
               setactivityStatus(false);
             }
-
-            storage.load({key: route.params.key})
+            if(chapterList.length <= 0){
+              setChapterDataStatus(true);
+            }else{
+              setChapterDataStatus(false)
+            }
+            storage.load({key: chapterData.storageKey})
             .then(index => { 
               if(!isCancelled){
                 setcurrentChapter(index)
@@ -43,23 +55,22 @@ export default function Chapterlist({route, navigation}) {
       }
     }
 
-    function handleNaviation(title, url, index){
+    function handleNaviation(title,url, index){
         navigation.navigate('Chapter', {
-            title: title,
-            url: route.params.cdUrl,
+            title,
             chapterUrl: url,
             chapterIndex:index,
-            key: route.params.key,
+            chapterData,
             handleChapter: handleChapterState
         })
     }
    
     return (
       <View style={styles.container}>
-        <Text style={styles.upperTitle}>{route.params.title}</Text>
+        <Text style={styles.upperTitle}>{chapterData.chapterTitle}</Text>
       
         { activityStatus ? <View style={styles.containerLoader}>
-            <ActivityIndicator size="large" color="#89CFF0"/>
+            {chapterDataStatus ? <><Ionicons name="server-outline" size={32} color="#a9a9a9"/><Text style={{color: "#a9a9a9", alignItems: 'center'}}>Server Down :(</Text></> : <ActivityIndicator size="large" color="#89CFF0"/>}
         </View>  :
         <FlatList data={chapterList} renderItem={({item, index})=> {
           
