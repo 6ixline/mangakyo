@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image, FlatList, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, FlatList, ActivityIndicator } from 'react-native';
 import { getMangaData } from "../utils/http";
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function Home({ navigation }) {
-  const [enterGoalText, setEnterGoalText] = useState('');
   const [dataManga, setMangaData] = useState([]);
   const [activityStatus, setactivityStatus] = useState(true);
 
@@ -82,19 +81,13 @@ const styles = StyleSheet.create({
   },
   bookFolder: {
     justifyContent: 'space-between',
-    shadowColor: 'green',
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 1,
-    shadowRadius: 2,
-    elevation: 20,
   },
   coverImage: {
     height: 240,
     width: 170,
     marginTop: 15,
     borderRadius: 10,
-    marginRight: 10,
-    
+    marginRight: 10,    
   },
   featureContainer: {
     paddingTop: 10,

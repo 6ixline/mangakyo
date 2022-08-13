@@ -28,12 +28,13 @@ export default function Chapterlist({route, navigation}) {
             if(!isCancelled){
               setChapterlist(chapters);
               setactivityStatus(false);
+              if(chapterList.length <= 0){
+                setChapterDataStatus(true);
+              }else{
+                setChapterDataStatus(false)
+              }
             }
-            if(chapterList.length <= 0){
-              setChapterDataStatus(true);
-            }else{
-              setChapterDataStatus(false)
-            }
+           
             storage.load({key: chapterData.storageKey})
             .then(index => { 
               if(!isCancelled){
