@@ -67,7 +67,6 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 10
   },
   upperTitle: {
     fontSize: 22,
@@ -81,16 +80,22 @@ const styles = StyleSheet.create({
   },
   bookFolder: {
     justifyContent: 'space-between',
+    elevation: 8,
+    shadowColor: 'black',
+    shadowOffset: { width : 0, height: 2},
+    shadowRadius: 6,
+    shadowOpacity: 0.25,
   },
   coverImage: {
     height: 240,
     width: 170,
     marginTop: 15,
     borderRadius: 10,
-    marginRight: 10,    
+    marginRight: 10,   
   },
   featureContainer: {
     paddingTop: 10,
+    elevation: 4,
     flexDirection: "row",
     alignItems: 'center'
   },
@@ -109,6 +114,7 @@ const styles = StyleSheet.create({
   },
   categoryContainer: {
     marginBottom: 30,
+    marginHorizontal: 10
   },
   containerLoader:{
     flex: 1,

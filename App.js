@@ -25,6 +25,7 @@ export default function App() {
 
   return (
     <>
+
     <StatusBar  animated={true}
         barStyle='dark-content'/>
     <NavigationContainer>
@@ -40,6 +41,7 @@ export default function App() {
         }} />
       </Stack.Navigator>
     </NavigationContainer>
+
     <View style={styles.bottomText}>
       <Text>© Created by 6ixline</Text>
     </View>
