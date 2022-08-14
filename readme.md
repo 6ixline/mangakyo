@@ -8,7 +8,7 @@ I alway wanted a app for reading manga and while learning react native I had a c
 
 Screen shot:
 
-![Home Screen]([https://your-copied-image-address](https://github.com/6ixline/mangakyo/blob/master/app-screen-shot/Screenshot_2022-08-14-17-42-19-65_fe3df306a758d86c6bd8096ac428f79d.jpg))
-![Chapter List Screen](https://your-copied-image-address)
-![Chapter reading Screen 1](https://your-copied-image-address)
-![Chapter reading Screen 2](https://your-copied-image-address)
+![Home Screen]([[https://your-copied-image-address](https://github.com/6ixline/mangakyo/blob/master/app-screen-shot/Screenshot_2022-08-14-17-42-19-65_fe3df306a758d86c6bd8096ac428f79d.jpg](https://github.com/6ixline/mangakyo/blob/4f5ff29702949dfcf5be6de2be971eb6cd80107f/app-screen-shot/Screenshot_2022-08-14-17-42-19-65_fe3df306a758d86c6bd8096ac428f79d.jpg?raw=true)))
+![Chapter List Screen]([https://your-copied-image-address](https://github.com/6ixline/mangakyo/blob/4f5ff29702949dfcf5be6de2be971eb6cd80107f/app-screen-shot/Screenshot_2022-08-14-17-42-31-92_fe3df306a758d86c6bd8096ac428f79d.jpg?raw=true))
+![Chapter reading Screen 1]([https://your-copied-image-address](https://github.com/6ixline/mangakyo/blob/4f5ff29702949dfcf5be6de2be971eb6cd80107f/app-screen-shot/Screenshot_2022-08-14-17-43-23-19_fe3df306a758d86c6bd8096ac428f79d.jpg?raw=true))
+![Chapter reading Screen 2]([https://your-copied-image-address](https://github.com/6ixline/mangakyo/blob/4f5ff29702949dfcf5be6de2be971eb6cd80107f/app-screen-shot/Screenshot_2022-08-14-17-43-33-48_fe3df306a758d86c6bd8096ac428f79d.jpg?raw=true))
