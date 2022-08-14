@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions, FlatList, ActivityIndicator } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getChapterList } from "../utils/http"; 
-import storage from '../storage/storage';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Loader from '../loader/loader';
 
@@ -34,14 +34,17 @@ export default function Chapterlist({route, navigation}) {
                 setChapterDataStatus(false)
               }
             }
+           try{
+             const indexValue = await AsyncStorage.getItem(chapterData.storageKey);
+             if(!isCancelled && indexValue){
+              setcurrentChapter(indexValue)
+              console.log(indexValue);
+            }
+
+           }catch(e){
+            console.log(e.name)
+           }
            
-            storage.load({key: chapterData.storageKey})
-            .then(index => { 
-              if(!isCancelled){
-                setcurrentChapter(index)
-              }
-            })
-            .catch(err => { console.log("No Data Found!")})
         }
         getChapters()
 

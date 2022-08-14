@@ -1,7 +1,19 @@
 import { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image, FlatList, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, FlatList, ActivityIndicator, Alert } from 'react-native';
+import * as Notifications from "expo-notifications";
 import { getMangaData } from "../utils/http";
 import Ionicons from '@expo/vector-icons/Ionicons';
+
+
+Notifications.setNotificationHandler({
+  handleNotification: async () =>{
+    return {
+      shouldPlaySound: false,
+      shouldSetBadge: true,
+      shouldShowAlert: true
+    };
+  }
+});
 
 export default function Home({ navigation }) {
   const [dataManga, setMangaData] = useState([]);
@@ -12,6 +24,13 @@ export default function Home({ navigation }) {
      item
     });
   }
+  // useEffect(()=>{
+  //   async function configPushNotification(){
+  //     const token = (await Notifications.getExpoPushTokenAsync()).data;
+  //     console.log(token);
+  //   }
+  //   configPushNotification();
+  // }, [])
   useEffect(()=>{
     let isCancelled = false;
     async function getManga(){
@@ -19,6 +38,18 @@ export default function Home({ navigation }) {
       if(!isCancelled){
         setMangaData(data)
         setactivityStatus(false)
+        
+        // Local Notificaton
+        Notifications.scheduleNotificationAsync({
+          content: {
+            title: "Managkyo!",
+            body: "welcome to mangakyo explore the app as you please."
+          },
+          trigger:{
+            seconds: 5
+          }
+        })
+
       }
     }
     getManga();

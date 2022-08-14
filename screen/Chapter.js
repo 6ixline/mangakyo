@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, ActivityIndicator, TouchableOpacity, Image, Dimensions, FlatList } from 'react-native';
 import { getChapter } from "../utils/http";
 import Ionicons from '@expo/vector-icons/Ionicons';
-import storage from '../storage/storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Loader from '../loader/loader';
 
 const win = Dimensions.get('window');
@@ -30,16 +30,19 @@ export default function Chapter({route}) {
           setimageurl(images)
           setactivityStatus(false)
         }
-        storage.load({key: chapterData.storageKey})
-        .then(index => { 
-          if(index == route.params.chapterIndex){
+
+        try{
+           const indexValue = await AsyncStorage.getItem(chapterData.storageKey);
+           if(indexValue == route.params.chapterIndex){
             if(!isCancelled){
-            setBookMark(index);
+            setBookMark(indexValue);
             setflag(false)
             }
-          }
-        })
-        .catch(err => { console.log("No Data Found!")})
+           }
+        }catch(e){
+          console.log(e.name)
+        }
+        
       }
       getImages();
 
@@ -47,17 +50,21 @@ export default function Chapter({route}) {
         isCancelled = true;
       }
     },[])
-
-    function handleBookMarkPress(){
-        if(flag){
-          setBookMark('');
-          setflag(false);
-        }else{
-          setBookMark(route.params.chapterIndex);
-          setflag(true);
+    async function handleBookMarkPress(){
+      if(bookMark == route.params.chapterIndex){
+        setBookMark('');
+        setflag(false);
+      }else{
+        await setBookMark(route.params.chapterIndex);
+        setflag(true);
+      }
+        try{
+          await AsyncStorage.setItem(chapterData.storageKey, JSON.stringify(bookMark))
+          route.params.handleChapter(bookMark)
+          console.log(bookMark)
+        }catch(e){
+          console.log(e.name)
         }
-        storage.save({key: chapterData.storageKey, data: `${bookMark}`});
-        route.params.handleChapter(bookMark)
       
     }
 
