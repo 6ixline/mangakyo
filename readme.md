@@ -1,7 +1,7 @@
 # Mangakyo
 - It is a personal project 💻 for reading manga 📖 built in react native.
 
-It uses a scrapping tool that serves on the backend to get all content. It was my very first react native project and I learn a lot about Flatlist, React Navigation, Async Storage, and much other stuff it was a really fun experience 😄.
+It uses a scrapping tool that serves on the backend to get all content. It was my very first react native project and I learn a lot about React native like how to use Flatlist, React Navigation, Async Storage, and many other stuff it was a really fun experience 😄.
 
 I always wanted an app for reading manga and while learning React native I had a chance to create one for myself so, I built one I am really happy with how it turns out.
 
