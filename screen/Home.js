@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, FlatList, ActivityIndicator, Alert } from 'react-native';
 import * as Notifications from "expo-notifications";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getMangaData } from "../utils/http";
 import Ionicons from '@expo/vector-icons/Ionicons';
 
@@ -38,18 +39,28 @@ export default function Home({ navigation }) {
       if(!isCancelled){
         setMangaData(data)
         setactivityStatus(false)
-        
-        // Local Notificaton
-        Notifications.scheduleNotificationAsync({
-          content: {
-            title: "Managkyo!",
-            body: "welcome to mangakyo explore the app as you please."
-          },
-          trigger:{
-            seconds: 5
-          }
-        })
+        try{
+          const not_status = await AsyncStorage.getItem("notification_status");
 
+          if(not_status != "" && not_status != "triggered"){
+            // Local Notificaton
+             Notifications.scheduleNotificationAsync({
+               content: {
+                 title: "Mangakyo!",
+                 body: "welcome to mangakyo explore the app as you please."
+               },
+               trigger:{
+                 seconds: 5
+               }
+             })
+            await AsyncStorage.setItem("notification_status", "triggered")
+          }
+
+
+        }catch(e){
+          console.log(e.name);
+        }
+       
       }
     }
     getManga();
